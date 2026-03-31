@@ -13,3 +13,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts:/docker-entrypoint-initdb.d
       - ./datasets:/datasets
+
+volumes:
+  postgres_data:
