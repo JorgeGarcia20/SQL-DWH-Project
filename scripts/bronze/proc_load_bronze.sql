@@ -52,17 +52,17 @@ BEGIN
         v_time_load_end := clock_timestamp();
         RAISE NOTICE 'Time taken to load bronze.crm_cust_info: % milliseconds', EXTRACT(MILLISECONDS FROM (v_time_load_end - v_time_load_start));
 
-        -- v_time_load_start := clock_timestamp();
-        -- RAISE NOTICE '>> Truncating table: bronze.crm_prd_info';
-        -- TRUNCATE TABLE bronze.crm_prd_info;
+        v_time_load_start := clock_timestamp();
+        RAISE NOTICE '>> Truncating table: bronze.crm_prd_info';
+        TRUNCATE TABLE bronze.crm_prd_info;
 
-        -- RAISE NOTICE '>> Loading data into table: bronze.crm_prd_info';
-        -- COPY bronze.crm_prd_info(prd_id, prd_key, prd_nm, prd_cost, prd_start_dt, prd_end_dt)
-        -- FROM '/datasets/source_crm/prd_info.csv'
-        -- DELIMITER ','
-        -- CSV HEADER;
-        -- v_time_load_end := clock_timestamp();
-        -- RAISE NOTICE 'Time taken to load bronze.crm_prd_info: % milliseconds', EXTRACT(MILLISECONDS FROM (v_time_load_end - v_time_load_start));
+        RAISE NOTICE '>> Loading data into table: bronze.crm_prd_info';
+        COPY bronze.crm_prd_info(prd_id, prd_key, prd_nm, prd_cost, prd_line, prd_start_dt, prd_end_dt)
+        FROM '/datasets/source_crm/prd_info.csv'
+        DELIMITER ','
+        CSV HEADER;
+        v_time_load_end := clock_timestamp();
+        RAISE NOTICE 'Time taken to load bronze.crm_prd_info: % milliseconds', EXTRACT(MILLISECONDS FROM (v_time_load_end - v_time_load_start));
 
         v_time_load_start := clock_timestamp();
         RAISE NOTICE '>> Truncating table: bronze.crm_sales_details';
