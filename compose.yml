@@ -14,5 +14,20 @@ services:
       - ./scripts:/docker-entrypoint-initdb.d
       - ./datasets:/datasets
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_dwh
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
 volumes:
   postgres_data:
+  pgadmin_data:
